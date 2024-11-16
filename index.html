@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zillow</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="Icon" href="imagenes/Icono.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="padre relative">
+        <div class="">
+            <div class="container_menu text-lg flex justify-between items-center pt-7 pb-6 pl-4 pr-10 border-b border-[#d1d1d5]">
+                <div class="subcontainer-menu-1 flex gap-x-7">
+                    <p>Buy</p>
+                    <p>Rent</p>
+                    <p>Sell</p>
+                    <p>Home Loans</p>
+                    <p>Find an Agent</p>
+                </div>
+                <div class="subcontainer-menu-2">
+                    <img class="w-40" src="imagenes/logo.png" alt="">
+                </div>
+                <div class="subcontainer-menu-3 flex gap-x-7">
+                    <p>Manage Rentals</p>
+                    <p>Advertise</p>
+                    <p>Help</p>
+                    <p> sing In</p>
+                </div>
+            </div>
+            <div class="container_barra flex mt-2 pl-3 pb-1.5 border-b border-[#d1d1d5]">
+                <div class="subcontainer-barra-1 relative w-[298px] h-12 flex border border-[#d1d1d5] rounded-md hover:border-[#006aff]">
+                    <input id="busqueda" class="w-[250px] pl-2 rounded-md placeholder:text-[#596b82]" type="text" placeholder="City, Neighborhood, Zip, Address">
+                    <button id="buscar"><img class="absolute right-3 top-4" src="imagenes/search.png" alt=""></button>
+                </div>
+                <div class="subcontainer-barra-2 flex items-center gap-x-2 ml-3.5">
+                    <select id="estados" class="estado flex items-center text-center text-[#2a2a33] gap-x-2 border border-[#006aff] bg-[#f2faff] rounded-md w-28 py-2.5 text-sm font-semibold hover:bg-[#f1f1f4] hover:border-[#a7a6ab]">
+                        <option class="option" value="rent">For Rent</option>
+                        <option class="option" value="sale">For Sale</option>
+                        <option class="option" value="sold">Sold</option>
+                        <option class="option" value="all">All</option>
+                    </select>
+                    <button class="flex items-center justify-center text-[#2a2a33] gap-x-2 border border-[#a7a6ab] rounded-md w-32 py-2.5 text-sm font-semibold hover:bg-[#f1f1f4]">Price<img src="imagenes/flecha.png" alt=""></button>
+                    <select id="habitaciones" class="flex items-center justify-center text-center text-[#2a2a33] gap-x-2 border border-[#a7a6ab] rounded-md w-32 py-2.5 text-sm font-semibold hover:bg-[#f1f1f4]">
+                        <option value="all">Habiataciones</option>
+                        <option value="3">Habitaciones 3</option>
+                        <option value="2">Habitaciones 2</option>
+                        <option value="1">Habitaciones 1</option>
+                    </select>
+                    <button class="flex items-center justify-center text-[#2a2a33] gap-x-2 border border-[#a7a6ab] rounded-md w-32 py-2.5 text-sm font-semibold hover:bg-[#f1f1f4]">Home Type<img src="imagenes/flecha.png" alt=""></button>
+                    <button class="flex items-center justify-center text-[#2a2a33] gap-x-2 border border-[#a7a6ab] rounded-md w-32 py-2.5 text-sm font-semibold hover:bg-[#f1f1f4]">More<img src="imagenes/flecha.png" alt=""></button>
+                    <button class="flex items-center justify-center gap-x-2 text-white bg-[#006aff] rounded-md w-28 py-2.5 text-sm font-bold hover:text-[#0d4599] hover:border hover:border-[#0d4599] hover:bg-[#f2faff]">Save search</button>
+                </div>
+            </div>
+        </div>
+        <div class="container_mapa-aptos flex">
+            <div class="subcontainer-mapa static bottom-0 left-0">
+                <iframe class="shadow-inset-right" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d75242.43611458884!2d-74.00442835893462!3d40.68788526912273!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25ac2ce420ae7%3A0xad7fab8221c4fc67!2sCementerio%20de%20Green-Wood!5e0!3m2!1ses!2sco!4v1718749862206!5m2!1ses!2sco" width="550px" height="490px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> 
+            </div>
+            <div class="container_aptos h-[490px]">
+                <div class="py-3 pl-6 pr-10">
+                    <h1 class="text-xl font-medium mb-2">New York NY Rental Listings</h1>
+                    <div class="flex justify-between">
+                        <p class="text-sm">10 results</p>
+                        <p class="text-[#006aff] cursor-pointer font-bold hover:text-[#2f4271]">Sort: Home for You</p>
+                    </div>
+                </div>
+                <div id="subcontainer_aptos" class="flex flex-wrap pl-6 gap-2">
+                    
+                </div>
+            </div>
+        </div>
+        <div class="pop-up_window fixed inset-0 bg-black bg-opacity-50 flex flex-wrap items-center justify-center mt-2 hidden">
+            <div class="salir absolute right-3 top-4 cursor-pointer">
+                <img class="w-[50px]" src="imagenes/salir.png" alt="">
+            </div>
+            <div class="bg-white flex">
+                <div class="imagenes-aptos flex flex-col gap-1 w-[500px] h-[650px]">
+                    <img id="imagen-1" class="img-1" src="" alt="">
+                    <div class="flex gap-1">
+                        <img id="imagen-2" class="img-2 w-60" src="" alt="">
+                        <img id="imagen-3" class="img-3 w-60" src="" alt="">
+                    </div>
+                    <img id="imagen-4" class="img-4" src="#" alt="">
+                </div>
+                <div class="propiedades-apto py-3 px-6 w-[500px] bg-opacity-50">
+                    <div class="flex justify-between items-center pb-4 border-b border-[#d1d1d5]">
+                        <div class="zillow cursor-pointer">
+                            <img class="w-[118px]" src="imagenes/logo.png" alt="">
+                        </div>
+                        <div class="flex gap-x-6">
+                            <div class="flex items-center">
+                                <img src="imagenes/like.png" alt="">
+                                <p class="text-[#006aff]">Save</p>
+                            </div>
+                            <div class="flex items-center">
+                                <img src="imagenes/share.png" alt="">
+                                <p class="text-[#006aff]">Share</p>
+                            </div>
+                            <div class="flex items-center">
+                                <img src="imagenes/more.png" alt="">
+                                <p class="text-[#006aff]">More</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-y-0.5 my-2">
+                        <h1 id="edificio" class="text-2xl font-bold">#</h1>
+                        <h2 id="ubicacion" class="text-[#2a2a33]">#</h2>
+                        <a id="web" class="text-[#006aff] font-bold" href="#">#</a>
+                        <div class="flex items-center gap-x-1">
+                            <img src="imagenes/star.png" alt="">
+                            <img src="imagenes/star.png" alt="">
+                            <img src="imagenes/star.png" alt="">
+                            <img src="imagenes/star.png" alt="">
+                            <img src="imagenes/star.png" alt="">
+                            <p class="text-[#055e16] font-semibold">(1)</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-x-2 border-b border-[#d1d1d5] pb-3.5">
+                        <button class="border border-[#006aff] text-[#006aff] text-center py-2.5 rounded-md font-bold w-[230px]">Request to apply</button>
+                        <button class="bg-[#006aff] text-white text-center py-2.5 rounded-md font-bold w-[230px]">Request a tour</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+</html>
